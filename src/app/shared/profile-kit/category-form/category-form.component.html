@@ -1,0 +1,15 @@
+<fuse-card class="flex flex-col w-full mt-8 p-6 sm:p-8 pb-6">
+  <div class="text-xl font-semibold flex justify-between">
+    <span>Category</span>
+    <a class="cursor-pointer" *ngIf="editable && !editing" (click)="startEditing()"><mat-icon class="icon-size-4" svgIcon="heroicons_solid:pencil"></mat-icon></a>
+  </div>
+  <div class="flex flex-col sm:flex-row items-start mt-8">
+    <app-category-selector [categories]="user.customerProfile?.categories" [readonly]="!editing"></app-category-selector>
+  </div>
+  <div class="flex flex-row-reverse" *ngIf="editing">
+    <button class="px-6 mt-3" mat-flat-button [color]="'primary'" [disabled]="isSaving" (click)="save()">
+      <span *ngIf="!isSaving">Update</span>
+      <mat-progress-spinner *ngIf="isSaving" [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>
+    </button>
+  </div>
+</fuse-card>

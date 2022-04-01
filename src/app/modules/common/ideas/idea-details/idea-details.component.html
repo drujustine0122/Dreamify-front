@@ -1,0 +1,67 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 -m-6">
+  <div class="relative w-full" *ngIf="form?.get('cover').value">
+    <div class="absolute right-0 bottom-0 p-4">
+      <button mat-icon-button (click)="form?.get('cover').reset()"><mat-icon class="text-white" [svgIcon]="'heroicons_outline:trash'"></mat-icon></button>
+    </div>
+    <img class="w-full object-cover" [src]="form?.get('cover').value">
+  </div>
+  <div class="m-4">
+    <form [formGroup]="form">
+      <input class="w-full p-2 text-2xl" placeholder="Title" formControlName="title">
+      <textarea class="w-full my-2.5 p-2" fuseAutogrow placeholder="Description" formControlName="description"></textarea>
+    </form>
+    <!-- Categories -->
+    <div class="flex flex-wrap items-center mx-1 mt-6">
+      <ng-container *ngFor="let category of selectedCategories">
+        <div class="flex items-center m-1 py-0.5 px-3 rounded-full text-sm font-medium text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700">
+          <div>{{ category.name }}</div>
+          <mat-icon class="ml-1 icon-size-4 cursor-pointer" [svgIcon]="'heroicons_solid:x-circle'" (click)="toggleCategoryOnIdea(category)"></mat-icon>
+        </div>
+      </ng-container>
+    </div>
+    <div class="flex items-center justify-between mt-4">
+      <div class="flex items-center space-x-2">
+        <!-- idea cover image -->
+        <div>
+          <mat-progress-spinner *ngIf="isImageUploading" [diameter]="20" [mode]="'indeterminate'"></mat-progress-spinner>
+          <ng-container *ngIf="!isImageUploading">
+            <input id="image-file-input" class="absolute h-0 w-0 opacity-0 invisible pointer-events-none" type="file" [multiple]="false" [accept]="'image/jpeg, image/png'" (change)="uploadImage(imageFileInput.files)" #imageFileInput>
+            <label class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5" for="image-file-input" matRipple>
+              <mat-icon [svgIcon]="'heroicons_outline:photograph'"></mat-icon>
+            </label>
+          </ng-container>
+        </div>
+        <!-- idea category -->
+        <button mat-icon-button [matMenuTriggerFor]="labelsMenu">
+          <mat-icon [svgIcon]="'heroicons_outline:tag'"></mat-icon>
+        </button>
+        <mat-menu #labelsMenu="matMenu">
+          <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding style="min-width: 280px;">
+              <button mat-icon-button disabled></button>
+              <mat-checkbox class="checklist-leaf-node"
+                            [checked]="checklistSelection.isSelected(node)"
+                            (change)="todoLeafItemSelectionToggle(node)">{{node.name}}</mat-checkbox>
+            </mat-tree-node>
+          
+            <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+              <button mat-icon-button matTreeNodeToggle
+                      [attr.aria-label]="'Toggle ' + node.name">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+              </button>
+              <mat-checkbox [checked]="descendantsAllSelected(node)"
+                            [indeterminate]="descendantsPartiallySelected(node)"
+                            (change)="categorySelectionToggle(node)">{{node.name}}</mat-checkbox>
+            </mat-tree-node>
+          </mat-tree>
+        </mat-menu>
+      </div>
+      <button mat-flat-button color="primary" [disabled]="form.invalid || !selectedCategories.length || isSaving" (click)="save()">
+        <span *ngIf="!isSaving">Save</span>
+        <mat-progress-spinner *ngIf="isSaving" [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>
+      </button>
+    </div>
+  </div>
+</div>

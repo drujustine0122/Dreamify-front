@@ -1,0 +1,12 @@
+
+<h1 mat-dialog-title>Remove Confirm</h1>
+<div mat-dialog-content>
+  Are you surely going to remove this dream?
+</div>
+<section>
+    <div class="mt-3 flex justify-end">
+    <button class="px-3" mat-raised-button color="primary" (click) = "onNoClick()">Cancel</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button class="px-3" mat-button color="primary" (click) = "remove()">Ok</button>
+    </div>
+</section>

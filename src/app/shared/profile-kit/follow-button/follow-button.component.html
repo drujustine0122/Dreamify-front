@@ -1,0 +1,14 @@
+<ng-container *ngIf="user$">
+  <ng-container *ngIf="(user$ | async) as user">
+    <ng-container *ngIf="user.id !== userId">
+      <div class="relative">
+        <div *ngIf="state">
+          <div class="text-center align-middle absolute cursor-pointer rounded-full pt-3 text-white bg-green-500 right-20 bottom-3 w-20 h-10" (click)="unFollow()">Following</div>
+        </div>
+        <div *ngIf="!state">
+          <div class="text-center align-middle absolute cursor-pointer rounded-full pt-3 text-red-50 bg-blue-400 right-20 bottom-3 w-20 h-10" (click)="follow()">Follow</div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</ng-container>

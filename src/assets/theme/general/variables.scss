@@ -1,0 +1,15 @@
+// Spacing
+$pixel-spacer: 5px !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+@for $i from 1 through 100 {
+  $spacers: map-merge($spacers, (
+    $i * 5: ($i * $pixel-spacer)
+  ));
+}
+
+$enable-negative-margins: true;
+
+// Custom theme variables
+
+$dashboard-header-height: 70px;
+$dashboard-sidebar-width: 200px;

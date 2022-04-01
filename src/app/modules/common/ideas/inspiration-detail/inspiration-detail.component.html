@@ -1,0 +1,47 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 -m-6">
+  <div class="relative w-full" *ngIf="form?.get('url').value">
+    <img class="w-full object-cover" [src]="form?.get('url').value" alt="cover image">
+  </div>
+  <div class="m-4">
+    <div class="flex flex-wrap items-center mx-1 mt-6">
+      <ng-container *ngIf="selectedCategory">
+        <div class="flex items-center m-1 py-0.5 px-3 rounded-full text-sm font-medium text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700">
+          <div>{{ selectedCategory.name }}</div>
+          <mat-icon class="ml-1 icon-size-4 cursor-pointer" [svgIcon]="'heroicons_solid:x-circle'" (click)="toggleCategoryOnInspiration(selectedCategory)"></mat-icon>
+        </div>
+      </ng-container>
+    </div>
+    <div class="flex items-center justify-between mt-4">
+      <div class="flex items-center space-x-2">
+        <div>
+          <mat-progress-spinner *ngIf="isImageUploading" [diameter]="20" [mode]="'indeterminate'"></mat-progress-spinner>
+          <ng-container *ngIf="!isImageUploading">
+            <input id="image-file-input" class="absolute h-0 w-0 opacity-0 invisible pointer-events-none" type="file" [multiple]="false" [accept]="'image/jpeg, image/png'" (change)="uploadImage(imageFileInput.files)" #imageFileInput>
+            <label class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5" for="image-file-input" matRipple>
+              <mat-icon [svgIcon]="'heroicons_outline:photograph'"></mat-icon>
+            </label>
+          </ng-container>
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="labelsMenu">
+          <mat-icon [svgIcon]="'heroicons_outline:tag'"></mat-icon>
+        </button>
+        <mat-menu #labelsMenu="matMenu">
+          <ng-container *ngIf="(categories$ | async) as categories">
+            <ng-container *ngFor="let category of categories">
+              <button mat-menu-item (click)="toggleCategoryOnInspiration(category)">
+                <span class="flex items-center">
+                  <mat-checkbox class="flex items-center pointer-events-none" [color]="'primary'" [checked]="isCategorySelected(category)" disableRipple></mat-checkbox>
+                  <span class="ml-1 leading-5">{{ category.name }}</span>
+                </span>
+              </button>
+            </ng-container>
+          </ng-container>
+        </mat-menu>
+      </div>
+      <button mat-flat-button color="primary" [disabled]="!selectedCategory || isSaving" (click)="save()">
+        <span *ngIf="!isSaving">Save</span>
+        <mat-progress-spinner *ngIf="isSaving" [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>
+      </button>
+    </div>
+  </div>
+</div>

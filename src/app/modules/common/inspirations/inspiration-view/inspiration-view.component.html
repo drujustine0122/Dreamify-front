@@ -1,0 +1,16 @@
+<ng-container *ngIf="(inspiration$ | async) as inspiration">
+  <ng-container *ngIf="(successFollow$ | async) as successFollow">
+    <div class="flex-1 px-20 my-10 space-y-4">
+      <div class="flex flex-col shadow rounded-2xl overflow-hidden cursor-pointer bg-card">
+        <div class="relative">
+          <img class="w-full object-cover" [src]="inspiration.url" alt="Cover">
+          <app-follow-button [id]="successFollow.id" [state]="successFollow.success" [userId]="inspiration.createdBy.id"></app-follow-button>
+          <app-avatar-uploader class="absolute right-4 bottom-4" [size]="8" [user]="inspiration.createdBy"></app-avatar-uploader>
+          <div class="absolute left-4 bottom-2">
+            <div class="m-1 py-0.5 px-3 rounded-full text-sm font-medium text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700">{{ inspiration.category.name }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

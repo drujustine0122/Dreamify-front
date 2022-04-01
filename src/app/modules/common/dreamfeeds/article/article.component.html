@@ -1,0 +1,167 @@
+<fuse-card *ngIf="article.type === 'article'" class="flex flex-col w-full mt-8"
+               #expandableArticle="fuseCard">
+                <div class="flex items-center mx-6 sm:mx-8 mt-6 mb-4">
+                    <div class="w-6 h-10 mr-4">
+                      <app-avatar-uploader class="absolute left-6 top-7" [size]="8" [user]="article.createdBy"></app-avatar-uploader>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-semibold leading-none">{{article.createdBy.firstName + '  ' + article.createdBy.lastName}}</span>
+                        <span class="text-sm text-secondary leading-none mt-1">{{ article.createdAt | timeAgo }}</span>
+                    </div>
+                    <div class="flex flex-auto justify-end">
+                      <div class="fuse-vertical-navigation-item-badge-content bg-amber-500 text-white top rounded-lg px-2">
+                          article
+                      </div>
+                    </div>
+                    <button
+                        class="ml-auto -mr-4"
+                        mat-icon-button
+                        [matMenuTriggerFor]="postCardMenu10">
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                    </button>
+                    <mat-menu #postCardMenu10="matMenu">
+                        <button mat-menu-item>
+                            <span class="flex items-center">
+                                <mat-icon
+                                    class="icon-size-5 mr-3"
+                                    [svgIcon]="'heroicons_solid:save'"></mat-icon>
+                                <span>Save post</span>
+                            </span>
+                        </button>
+                        <button mat-menu-item>
+                            <span class="flex items-center">
+                                <mat-icon
+                                    class="icon-size-5 mr-3"
+                                    [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                                <span>Hide post</span>
+                            </span>
+                        </button>
+                        <button mat-menu-item>
+                            <span class="flex items-center">
+                                <mat-icon
+                                    class="icon-size-5 mr-3"
+                                    [svgIcon]="'heroicons_solid:clock'"></mat-icon>
+                                <span>Snooze for 30 days</span>
+                            </span>
+                        </button>
+                        <button mat-menu-item>
+                            <span class="flex items-center">
+                                <mat-icon
+                                    class="icon-size-5 mr-3"
+                                    [svgIcon]="'heroicons_solid:minus-circle'"></mat-icon>
+                                <span>Hide all</span>
+                            </span>
+                        </button>
+                        <mat-divider class="my-2"></mat-divider>
+                        <button mat-menu-item>
+                            <span class="flex items-center">
+                                <mat-icon
+                                    class="icon-size-5 mr-3"
+                                    [svgIcon]="'heroicons_solid:exclamation'"></mat-icon>
+                                <span>Report post</span>
+                            </span>
+                        </button>
+                        <button mat-menu-item>
+                            <span class="flex items-center">
+                                <mat-icon
+                                    class="icon-size-5 mr-3"
+                                    [svgIcon]="'heroicons_solid:bell'"></mat-icon>
+                                <span>Turn on notifications for this post</span>
+                            </span>
+                        </button>
+                    </mat-menu>
+                </div>
+                <div class="m-6 sm:mx-8" [innerHTML]="article.description">
+                </div>
+                <div class="flex items-center mx-3 sm:mx-5">
+                    <button
+                        class="px-3 mr-1"
+                        mat-button
+                        [routerLink]="['./']">
+                        <mat-icon
+                            class="icon-size-5 text-red-500 mr-2"
+                            [svgIcon]="'heroicons_solid:heart'"></mat-icon>
+                        <span>Unlike</span>
+                    </button>
+                    <button
+                        class="px-3 mr-1"
+                        mat-button
+                        [routerLink]="['./']">
+                        <mat-icon
+                            class="icon-size-5 mr-2"
+                            [svgIcon]="'heroicons_solid:chat-alt'"></mat-icon>
+                        <span>Comment</span>
+                    </button>
+                    <button
+                        class="px-3 mr-1"
+                        mat-button
+                        [routerLink]="['./']">
+                        <mat-icon
+                            class="icon-size-5 mr-2"
+                            [svgIcon]="'heroicons_solid:share'"></mat-icon>
+                        <span>Share</span>
+                    </button>
+                    <button
+                      class="px-3 mr-1"
+                      mat-button
+                      routerLink="/{{article.type}}s/{{ article.id }}">
+                      <mat-icon
+                          class="icon-size-5 mr-2"
+                          [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                      <span>Detail</span>
+                  </button>
+                </div>
+                <hr class="border-b mx-6 sm:mx-8 mt-4 mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center mx-6 sm:mx-8 mb-4 sm:mb-6">
+                    <div class="flex items-center">
+                        <img
+                            class="w-6 h-6 m-0.5 rounded-full text-card ring-2 ring-white"
+                            src="assets/images/avatars/female-02.jpg"
+                            alt="Card cover image">
+                        <img
+                            class="w-6 h-6 m-0.5 rounded-full -ml-3 text-card ring-2 ring-white"
+                            src="assets/images/avatars/female-04.jpg"
+                            alt="Card cover image">
+                        <img
+                            class="w-6 h-6 m-0.5 rounded-full -ml-3 text-card ring-2 ring-white"
+                            src="assets/images/avatars/male-09.jpg"
+                            alt="Card cover image">
+                        <img
+                            class="w-6 h-6 m-0.5 rounded-full -ml-3 text-card ring-2 ring-white"
+                            src="assets/images/avatars/male-07.jpg"
+                            alt="Card cover image">
+                        <div class="text-md tracking-tight ml-3">You and 24 more liked this</div>
+                    </div>
+                    <div class="hidden sm:flex flex-auto"></div>
+                    <div class="flex items-center mt-4 sm:mt-0">
+                        <button
+                            class="px-3 mr-1 -ml-2 sm:ml-0"
+                            mat-button>
+                            4 shares
+                        </button>
+                        <button
+                            class="px-3 sm:-mr-4"
+                            mat-button
+                            (click)="showMessages()" (click)="expandableArticle.expanded = !expandableArticle.expanded">
+                            <span class="mr-1">Show Comments</span>
+                            <mat-icon
+                                class="icon-size-5 transform transition-transform ease-in-out duration-150 rotate-0"
+                                [ngClass]="{'rotate-180': expandableArticle.expanded}"
+                                [svgIcon]="'heroicons_solid:chevron-down'"></mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <ng-container fuseCardExpansion>
+                  <ng-container *ngIf="( messages$ | async ) as messages; else loading">
+                    <div></div>
+                    <app-message-body [messages]="messages" [id]="article.id"></app-message-body>
+                  </ng-container>
+                  <ng-template #loading>
+                    <div class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
+                      <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">Loading...</div>
+                    </div>
+                  </ng-template>
+                </ng-container>
+          </fuse-card>

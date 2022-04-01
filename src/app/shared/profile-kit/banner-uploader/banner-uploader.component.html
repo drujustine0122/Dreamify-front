@@ -1,0 +1,10 @@
+<div class="h-40 lg:h-80 relative bg-gray-400">
+  <img class="w-full h-full object-cover" *ngIf="user.customerProfile.banner" [src]="user.customerProfile.banner" alt="Cover image">
+  <div class="actions absolute top-0 right-0 w-full h-full overflow-hidden items-center justify-center" *ngIf="mine">
+    <div class="w-full h-full bg-black opacity-70 absolute top-0 right-0"></div>
+    <label class="z-10 cursor-pointer">
+      <mat-icon class="text-white icon-size-8" svgIcon="heroicons_solid:photograph"></mat-icon>
+      <input accept="image/x-png,image/gif,image/jpeg" class="hidden" type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
+    </label>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+:host > div {
+  .actions {
+    display: none;
+  }
+  &:hover .actions {
+    display: flex;
+  }
+}

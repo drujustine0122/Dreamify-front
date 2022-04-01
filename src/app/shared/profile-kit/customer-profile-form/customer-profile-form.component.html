@@ -1,0 +1,30 @@
+<fuse-card class="flex flex-col w-full mt-8 p-6 sm:p-8 pb-6">
+  <div class="text-xl font-semibold flex justify-between">
+    <span>Customer Profile</span>
+    <a class="cursor-pointer" *ngIf="editable && !editing" (click)="startEditing()"><mat-icon class="icon-size-4" svgIcon="heroicons_solid:pencil"></mat-icon></a>
+  </div>
+  <div class="flex flex-col sm:flex-row items-start mt-8">
+    <form class="flex-grow" [formGroup]="form">
+      <mat-form-field class="w-full">
+        <mat-label>Title</mat-label>
+        <input id="title" matInput formControlName="title" [readonly]="!editing">
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Address</mat-label>
+        <input matInput matGoogleMapsAutocomplete formControlName="address"
+               (onAutocompleteSelected)="onAutocompleteSelected($event)"
+               (onLocationSelected)="onLocationSelected($event)"
+               [readonly]="!editing">
+      </mat-form-field>
+    </form>
+  </div>
+  <agm-map class="w-full h-50" [latitude]="form.get('latitude').value" [longitude]="form.get('longitude').value" [scrollwheel]="false">
+    <agm-marker [latitude]="form.get('latitude').value" [longitude]="form.get('longitude').value"></agm-marker>
+  </agm-map>
+  <div class="flex flex-row-reverse" *ngIf="editing">
+    <button class="px-6 mt-3" mat-flat-button [color]="'primary'" [disabled]="isSaving" (click)="save()">
+      <span *ngIf="!isSaving">Update</span>
+      <mat-progress-spinner *ngIf="isSaving" [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>
+    </button>
+  </div>
+</fuse-card>

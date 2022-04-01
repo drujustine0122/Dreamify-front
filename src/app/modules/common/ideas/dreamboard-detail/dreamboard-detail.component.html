@@ -1,0 +1,12 @@
+<div class="m-4">
+    <form [formGroup]="form">
+      <input class="w-full p-2 text-2xl" placeholder="Title" formControlName="title">
+      <textarea class="w-full my-2.5 p-2" fuseAutogrow placeholder="Description" formControlName="description"></textarea>
+    </form>
+</div>
+<div class="flex items-center justify-between mt-4">
+  <button mat-flat-button color="primary" [disabled]="form.invalid || isSaving" (click)="save()">
+    <span *ngIf="!isSaving">Save</span>
+    <mat-progress-spinner *ngIf="isSaving" [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>
+  </button>
+</div>

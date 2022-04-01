@@ -1,0 +1,8 @@
+// Default bootstrap functions for sass
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+// Customized bootstrap variables
+@import "general/variables";
+@import "general/mixins";

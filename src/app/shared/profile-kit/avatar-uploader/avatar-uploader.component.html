@@ -1,0 +1,13 @@
+<div class="relative rounded-full">
+  <div class="w-{{ size }} h-{{ size }} rounded-full overflow-hidden ring-4 ring-bg-card bg-gray-400 flex items-center justify-center">
+    <img *ngIf="user.avatar" class="w-full h-full object-cover" [src]="user.avatar" [alt]="user.firstName">
+    <span *ngIf="!user.avatar" class="text-white font-bold" [style.font-size.px]="size + 10">{{ user.firstName | slice : 0 : 1 | uppercase }}{{ user.lastName | slice : 0 : 1 | uppercase }}</span>
+  </div>
+  <div class="actions absolute top-0 right-0 w-{{ size }} h-{{ size }} rounded-full overflow-hidden items-center justify-center" *ngIf="mine">
+    <div class="w-full h-full bg-black opacity-70 absolute top-0 right-0"></div>
+    <label class="z-10 cursor-pointer">
+      <mat-icon class="text-white" svgIcon="heroicons_solid:camera"></mat-icon>
+      <input accept="image/x-png,image/gif,image/jpeg" class="hidden" type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
+    </label>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+<div class="flex flex-col items-start mr lg:col-span-1 bg-white pb-8 py-3 space-y-4"
+    style="overflow-y: auto; overflow-x: scroll !important">
+    <!-- Dream Title -->
+    <div class="flex flex-wrap font-bold text-2xl w-4/5 mx-6 items-center flex-auto">
+        <div class="relative" *ngIf="!isroot">
+          <button mat-icon-button [color]="'dark'" (click)="backMenu()">
+            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:arrow-left'"></mat-icon>
+          </button>
+        </div>
+        <div class="px-5">{{dreamtitle}}</div>
+    </div>
+    <!-- Start Idea SearchBox -->
+    <div class="flex items-center w-4/5 mx-4 flex-auto">
+        <mat-form-field class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript flex-auto ml-4 lg:ml-0">
+            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:search'" matPrefix></mat-icon>
+            <input matInput [autocomplete]="'off'" placeholder="Search {{dreamtitle}}"
+                (input)="filterByQuery(searchInput.value)" #searchInput>
+        </mat-form-field>
+    </div>
+    <!-- End Idea SearchBox -->
+    <!-- Start Dreams Tabs -->
+    <div class="flex flex-col mx-2 flex-wrap items-left font-medium">
+        <!-- <div class="relative flex items-center mx-2 py-2 px-4 font-medium rounded-full cursor-pointer bg-gray-200 dark:bg-gray-700 text-primary dark:text-primary-400"
+            [routerLink]="['/ideas/']">
+            <mat-icon class="dr-blue-icon" svgIcon="heroicons_outline:book-open"></mat-icon>
+            <div class="ml-3 leading-5 select-none text-teal-400">Home</div>
+        </div>
+        <div class="relative flex items-center mx-2 py-2 px-4 font-medium rounded-full cursor-pointer">
+            <mat-icon class="dr-blue-icon" svgIcon="heroicons_outline:folder-open"></mat-icon>
+            <div class="ml-3 leading-5 select-none text-default">Type</div>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <mat-icon></mat-icon>
+                    <span>General</span>
+                </button>
+                <button mat-menu-item [matMenuTriggerFor]="contests">
+                    <mat-icon></mat-icon>
+                    <span>Contests</span>
+                </button>
+            </mat-menu>
+            <mat-menu #contests="matMenu">
+                <button mat-menu-item>Challenges</button>
+                <button mat-menu-item>Offers</button>
+                <button mat-menu-item>Experiences</button>
+                <button mat-menu-item>Products</button>
+                <button mat-menu-item>Services</button>
+                <button mat-menu-item>Gifts</button>
+                <button mat-menu-item>Deals</button>
+            </mat-menu>
+        </div>
+        <div class="relative flex items-center mx-2 py-2 px-4 font-medium rounded-full cursor-pointer">
+            <mat-icon class="dr-blue-icon" svgIcon="heroicons_outline:folder-open"></mat-icon>
+            <div class="ml-3 leading-5 select-none text-default">Calendar</div>
+        </div>
+        <div class="relative flex items-center mx-2 py-2 px-4 font-medium rounded-full cursor-pointer">
+            <mat-icon class="dr-blue-icon" svgIcon="heroicons_outline:folder-open"></mat-icon>
+            <div class="ml-3 leading-5 select-none text-default">Map</div>
+        </div>
+        <div class="relative flex items-center mx-2 py-2 px-4 font-medium rounded-full cursor-pointer"
+            (click)="showlist(dream)">
+            <mat-icon class=" dr-blue-icon" svgIcon="heroicons_outline:folder-open">
+            </mat-icon>
+            <div class="ml-3 leading-5 select-none text-default">Local Dreams</div>
+        </div>
+        <div class="relative flex items-center mx-2 py-2 px-4 font-medium rounded-full cursor-pointer"
+            [routerLink]="['my-dream']">
+            <mat-icon class="dr-blue-icon" svgIcon="heroicons_outline:folder-open"></mat-icon>
+            <div class="ml-3 leading-5 select-none text-default">My Dreams</div>
+        </div>
+        <div class="relative flex items-center mx-2 py-2 px-4 font-medium rounded-full cursor-pointer">
+            <mat-icon class="dr-blue-icon" svgIcon="heroicons_outline:folder-open"></mat-icon>
+            <div class="ml-3 leading-5 select-none text-default">Suggested Dreams</div>
+        </div>
+        <div class="relative flex items-center mx-2 py-2 px-4 font-medium rounded-full cursor-pointer">
+            <mat-icon class="dr-blue-icon" svgIcon="heroicons_outline:folder-open"></mat-icon>
+            <div class="ml-3 leading-5 select-none text-default">Dreams Lists</div>
+        </div> -->
+        <ng-container *ngFor="let dream of menuItems">
+            <div *ngIf="dream.dreamName != 'Type' && dream.dreamId != 1"
+                class="relative flex items-center mx-2 py-2 px-4 font-medium rounded-full cursor-pointer"
+                (click)="showlist(dream)">
+                <mat-icon class="dr-blue-icon" svgIcon="heroicons_outline:folder-open"></mat-icon>
+                <div class="ml-3 leading-5 select-none text-default">{{dream.dreamName}}</div>
+            </div>
+            <div *ngIf="dream.dreamName === 'Type' && dream.dreamId != 1"
+                class="relative flex items-center mx-2 py-2 px-4 font-medium rounded-full cursor-pointer">
+                <mat-icon class="dr-blue-icon" svgIcon="heroicons_outline:folder-open"></mat-icon>
+                <div class="ml-3 leading-5 select-none text-default">Type</div>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button *ngFor="let type of typeItems" mat-menu-item (click)="showListByType(type)">
+                        <mat-icon></mat-icon>
+                        <span>{{type}}</span>
+                    </button>
+                </mat-menu>
+                <!-- <mat-menu #contests="matMenu">
+                    <button mat-menu-item>Challenges</button>
+                    <button mat-menu-item>Offers</button>
+                    <button mat-menu-item>Experiences</button>
+                    <button mat-menu-item>Products</button>
+                    <button mat-menu-item>Services</button>
+                    <button mat-menu-item>Gifts</button>
+                    <button mat-menu-item>Deals</button>
+                </mat-menu> -->
+            </div>
+            <div *ngIf="dream.dreamName != 'Type' && dream.dreamId == 1"
+                class="relative flex items-center mx-2 py-2 px-4 font-medium rounded-full cursor-pointer"
+                (click)="sendMessage(dream)">
+                <mat-icon class="dr-blue-icon" svgIcon="heroicons_outline:folder-open"></mat-icon>
+                <div class="ml-3 leading-5 select-none text-default">{{dream.dreamName}}</div>
+            </div>
+
+        </ng-container>
+    </div>
+    <!-- End Dreams Tabs -->
+    <div class="flex flex-wrap font-bold text-2xl w-4/5 mx-6 items-center font-medium">
+        <div class="px-1">Categories</div>
+    </div>
+    <!-- Start Categories Checkboxes -->
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+            <button mat-icon-button disabled></button>
+            <mat-checkbox class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)"
+                (change)="todoLeafItemSelectionToggle(node)">{{node.name}}</mat-checkbox>
+        </mat-tree-node>
+
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+                <mat-icon class="mat-icon-rtl-mirror">
+                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+            </button>
+            <mat-checkbox [checked]="descendantsAllSelected(node)" [indeterminate]="descendantsPartiallySelected(node)"
+                (change)="categorySelectionToggle(node)">{{node.name}}</mat-checkbox>
+        </mat-tree-node>
+    </mat-tree>
+    <!-- End Categories Checkboxes -->
+</div>

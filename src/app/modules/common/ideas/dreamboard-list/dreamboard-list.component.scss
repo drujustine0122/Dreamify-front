@@ -1,0 +1,44 @@
+.header-text {
+    width: 80%;
+    word-break: break-all;
+    justify-content: center;
+}
+
+.mat-button{
+    background-color:#4f46e5 !important;
+    color:white !important;
+    margin:5px !important;
+}
+
+.flex.flex-col.w-full.p-8.ng-tns-c242-7.ng-star-inserted{
+    box-shadow:none !important;
+}
+
+fuse-card{
+    box-shadow:none !important;
+}
+
+.flex.items-center.mt-8.mb-4.ml-auto.space-x-6{
+    margin-left:0px !important;
+}
+
+.ctg-btn{
+    margin-right: 50px !important;
+    margin-left: 50px !important;
+    box-shadow:none !important;
+}
+
+.dreamboard-btn{
+    padding-left:20px !important;
+    padding-right: 20px !important;
+    margin-left:220px !important;
+}
+
+.space-x-6 > :not([hidden]) ~ :not([hidden]){
+    margin-left:220px !important;
+}
+
+.flex.flex-row.category-btn-group{
+    border-radius:5px; 
+    width:130px
+}

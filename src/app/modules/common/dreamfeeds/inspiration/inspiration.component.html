@@ -1,0 +1,157 @@
+<fuse-card *ngIf="inspiration.type === 'inspiration'"
+              class="flex flex-col max-w-140 sm:min-w-140 w-full mt-8"
+              >
+              <div class="flex items-center mx-6 sm:mx-8 mt-6 mb-4">
+                  <div class="w-6 h-10 mr-4">
+                    <app-avatar-uploader class="absolute left-6 top-7" [size]="8" [user]="inspiration.createdBy"></app-avatar-uploader>
+                  </div>
+                  <div class="flex flex-col">
+                      <span class="font-semibold leading-none">{{inspiration.createdBy.firstName + '  ' + inspiration.createdBy.lastName}}</span>
+                      <span class="text-sm text-secondary leading-none mt-1">{{ inspiration.createdAt | timeAgo }}</span>
+                  </div>
+                  <div class="flex flex-auto justify-end">
+                    <div class="fuse-vertical-navigation-item-badge-content bg-warn text-white top rounded-lg px-2">
+                        inspiration
+                    </div>
+                  </div>
+                  <button
+                      class="ml-auto -mr-4"
+                      mat-icon-button
+                      [matMenuTriggerFor]="postCardMenu02">
+                      <mat-icon
+                          class="icon-size-5"
+                          [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                  </button>
+                  <mat-menu #postCardMenu02="matMenu">
+                      <button mat-menu-item>
+                          <span class="flex items-center">
+                              <mat-icon
+                                  class="icon-size-5 mr-3"
+                                  [svgIcon]="'heroicons_solid:save'"></mat-icon>
+                              <span>Save post</span>
+                          </span>
+                      </button>
+                      <button mat-menu-item>
+                          <span class="flex items-center">
+                              <mat-icon
+                                  class="icon-size-5 mr-3"
+                                  [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                              <span>Hide post</span>
+                          </span>
+                      </button>
+                      <button mat-menu-item>
+                          <span class="flex items-center">
+                              <mat-icon
+                                  class="icon-size-5 mr-3"
+                                  [svgIcon]="'heroicons_solid:clock'"></mat-icon>
+                              <span>Snooze for 30 days</span>
+                          </span>
+                      </button>
+                      <button mat-menu-item>
+                          <span class="flex items-center">
+                              <mat-icon
+                                  class="icon-size-5 mr-3"
+                                  [svgIcon]="'heroicons_solid:minus-circle'"></mat-icon>
+                              <span>Hide all</span>
+                          </span>
+                      </button>
+                      <mat-divider class="my-2"></mat-divider>
+                      <button mat-menu-item>
+                          <span class="flex items-center">
+                              <mat-icon
+                                  class="icon-size-5 mr-3"
+                                  [svgIcon]="'heroicons_solid:exclamation'"></mat-icon>
+                              <span>Report post</span>
+                          </span>
+                      </button>
+                      <button mat-menu-item>
+                          <span class="flex items-center">
+                              <mat-icon
+                                  class="icon-size-5 mr-3"
+                                  [svgIcon]="'heroicons_solid:bell'"></mat-icon>
+                              <span>Turn on notifications for this post</span>
+                          </span>
+                      </button>
+                  </mat-menu>
+              </div>
+              <div class="relative mb-4">
+                  <img
+                      class="h-80 object-cover"
+                      [src]="inspiration.cover"
+                      alt="Inspiration cover image">
+              </div>
+              <div class="flex items-center mx-3 sm:mx-5">
+                  <button
+                      class="px-3 mr-1"
+                      mat-button
+                      [routerLink]="['./']">
+                      <mat-icon
+                          class="icon-size-5 text-red-500 mr-2"
+                          [svgIcon]="'heroicons_solid:heart'"></mat-icon>
+                      <span>Unlike</span>
+                  </button>
+                  <button
+                      class="px-3 mr-1"
+                      mat-button
+                      [routerLink]="['./']">
+                      <mat-icon
+                          class="icon-size-5 mr-2"
+                          [svgIcon]="'heroicons_solid:chat-alt'"></mat-icon>
+                      <span>Comment</span>
+                  </button>
+                  <button
+                      class="px-3 mr-1"
+                      mat-button
+                      [routerLink]="['./']">
+                      <mat-icon
+                          class="icon-size-5 mr-2"
+                          [svgIcon]="'heroicons_solid:share'"></mat-icon>
+                      <span>Share</span>
+                  </button>
+                  <button
+                    class="px-3 mr-1"
+                    mat-button
+                    routerLink="/{{inspiration.type}}s/{{ inspiration.id }}">
+                    <mat-icon
+                        class="icon-size-5 mr-2"
+                        [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                    <span>Detail</span>
+                </button>
+              </div>
+              <hr class="border-b mx-6 sm:mx-8 mt-4 mb-6">
+              <div class="flex flex-col sm:flex-row sm:items-center mx-6 sm:mx-8 mb-4 sm:mb-6">
+                  <div class="flex items-center">
+                      <img
+                          class="w-6 h-6 m-0.5 rounded-full text-card ring-2 ring-white"
+                          src="assets/images/avatars/female-02.jpg"
+                          alt="Card cover image">
+                      <img
+                          class="w-6 h-6 m-0.5 rounded-full -ml-3 text-card ring-2 ring-white"
+                          src="assets/images/avatars/female-04.jpg"
+                          alt="Card cover image">
+                      <img
+                          class="w-6 h-6 m-0.5 rounded-full -ml-3 text-card ring-2 ring-white"
+                          src="assets/images/avatars/male-09.jpg"
+                          alt="Card cover image">
+                      <img
+                          class="w-6 h-6 m-0.5 rounded-full -ml-3 text-card ring-2 ring-white"
+                          src="assets/images/avatars/male-07.jpg"
+                          alt="Card cover image">
+                      <div class="text-md tracking-tight ml-3">You and 24 more liked this</div>
+                  </div>
+                  <div class="hidden sm:flex flex-auto"></div>
+                  <div class="flex items-center mt-4 sm:mt-0">
+                      <button
+                          class="px-3 mr-1 -ml-2 sm:ml-0"
+                          mat-button>
+                          4 shares
+                      </button>
+                      <button
+                        class="px-3 sm:-mr-3"
+                        mat-button>
+                        Show comments
+                    </button>
+                  </div>
+              </div>
+
+              </fuse-card>

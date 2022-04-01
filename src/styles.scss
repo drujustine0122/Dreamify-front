@@ -1,0 +1,11 @@
+@import "assets/theme";
+@import "~bootstrap/scss/bootstrap";
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+
+@import "assets/theme/imports";
+
+/* defines global font */
+* {
+  font-family: 'Poppins', sans-serif;
+}

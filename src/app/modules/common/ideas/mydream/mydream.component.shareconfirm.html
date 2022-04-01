@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Share Confirm</h1>
+<div mat-dialog-content>
+  Are you surely going to share this dream?
+</div>
+<section>
+    <div class="mt-3 flex justify-end">
+    <button class="px-3" mat-raised-button color="primary" (click) = "onNoClick()">Cancel</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button class="px-3" mat-button color="primary" (click) = "shareDream()">Ok</button>
+    </div>
+</section>

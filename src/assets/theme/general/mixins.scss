@@ -1,0 +1,18 @@
+@mixin flex($segment, $size) {
+  flex: 0 0 $size;
+  #{$segment}: $size;
+  min-#{$segment}: $size;
+  max-#{$segment}: $size;
+}
+
+@mixin pretty-scroll() {
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: rgba(102, 102, 102, 0.5);
+  }
+}

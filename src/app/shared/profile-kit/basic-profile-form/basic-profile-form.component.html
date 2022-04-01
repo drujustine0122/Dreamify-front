@@ -1,0 +1,61 @@
+<fuse-card class="flex flex-col w-full p-6 sm:p-8 pb-6">
+  <div class="text-xl font-semibold flex justify-between">
+    <span>Basic Profile</span>
+    <a class="cursor-pointer" *ngIf="editable && !editing" (click)="startEditing()"><mat-icon class="icon-size-4" svgIcon="heroicons_solid:pencil"></mat-icon></a>
+  </div>
+  <div class="flex flex-col sm:flex-row items-start mt-8">
+    <form class="flex-grow" [formGroup]="form">
+
+      <div class="flex justify-between">
+        <mat-form-field class="w-full mr-3">
+          <mat-label>First name</mat-label>
+          <input id="firstName" matInput formControlName="firstName" [readonly]="!editing">
+          <mat-error *ngIf="form.get('firstName').hasError('required')">First name is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Last name</mat-label>
+          <input id="lastName" matInput formControlName="lastName" [readonly]="!editing">
+          <mat-error *ngIf="form.get('lastName').hasError('required')">Last name is required</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="w-full">
+        <mat-label>Email address</mat-label>
+        <input id="email" matInput formControlName="email" readonly>
+        <mat-error *ngIf="form.get('email').hasError('required')">Email address is required</mat-error>
+        <mat-error *ngIf="form.get('email').hasError('email')">Please enter a valid email address</mat-error>
+        <mat-icon matSuffix class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:lock-closed'"></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Phone</mat-label>
+        <input id="phone" matInput formControlName="phone" mask="(000) 000-0000" [readonly]="!editing">
+        <mat-error *ngIf="form.get('phone').hasError('required')">Phone number is required</mat-error>
+      </mat-form-field>
+
+      <div class="flex justify-between">
+        <mat-form-field class="w-full mr-3">
+          <mat-label>Gender</mat-label>
+          <mat-select placeholder="Gender" formControlName="gender">
+            <mat-option [value]="gender.value" *ngFor="let gender of genderOptions">{{ gender.label }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('gender').hasError('required')">Please select gender</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Birthday</mat-label>
+          <input matInput [matDatepicker]="birthdayPicker" formControlName="birthday" [readonly]="!editing">
+          <mat-datepicker-toggle matSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
+          <mat-datepicker #birthdayPicker></mat-datepicker>
+          <mat-error *ngIf="form.get('birthday').hasError('required')">Please select your birthday</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="flex flex-row-reverse" *ngIf="editing">
+    <button class="px-6 mt-3" mat-flat-button [color]="'primary'" (click)="save()" [disabled]="form.disabled">
+      <span *ngIf="!form.disabled">Update</span>
+      <mat-progress-spinner *ngIf="form.disabled" [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>
+    </button>
+  </div>
+</fuse-card>

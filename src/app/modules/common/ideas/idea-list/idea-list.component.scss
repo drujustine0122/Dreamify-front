@@ -1,0 +1,215 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.dr-blue-icon{
+    color:#0089ff;
+}
+
+.app-dream-sidebar{
+    overflow-x:scroll;
+}
+
+app-dream-sidebar{
+    overflow-x:scroll;
+}
+
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+       #map {
+        height: 100%;
+      }
+      
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+      
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+      
+      #infowindow-content {
+        display: none;
+      }
+      
+      #map #infowindow-content {
+        display: inline;
+      }
+      
+      .pac-card {
+        background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+        margin: 10px;
+        padding: 0 0.5em;
+        font: 400 18px Roboto, Arial, sans-serif;
+        overflow: hidden;
+        font-family: Roboto;
+        padding: 0;
+      }
+      
+      #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+      }
+      
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+      
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+      
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+      
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+      
+      #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+      
+      #target {
+        width: 345px;
+      }
+
+
+      agm-map {
+        height: 300px;
+        width:100%;
+        z-index:10 !important;
+    }
+
+    div.form-inline > agm-map{
+      background-color:black;
+    }
+
+    div.apply-btn{
+      height: 60px;
+    }
+
+    .apply-btn>button{
+      background-color:#5aef8e !important;
+      color:white !important;
+      width:50px;
+      height:20px;
+      z-index: 3;
+    }
+
+    .apply-btn{
+      z-index:2;
+      background-color: #0f172a;
+    }
+    
+
+
+    .mat-form-field-flex{
+      border:none !important;
+      border-bottom-left-radius: 0px !important;
+      border-bottom-right-radius: 0px !important;
+    }
+
+    .mat-form-field-flex:focus{
+      border-bottom-color:red !important;
+      border-bottom-width:1px !important;
+      background-color:red;
+    }
+
+    
+
+    input[type="text"]:focus + .mat-form-field-subscript-wrapper {
+        border:1px solid red !important;      
+    }
+
+    .mat-form-field-wrapper{
+      margin-bottom: 0px !important;
+    }
+
+
+    .mat-column-location{
+      width:20% !important;
+
+    }
+
+    .mat-column-category{
+      width:20% !important;
+
+    }
+
+    .mat-tree{
+        overflow-x: hidden;
+    }
+
+
+    .ctg-select-confirm-btn{
+      float:right;
+    }
+
+    .mat-column-action{
+      width:20% !important;
+    }
+
+    .mat-column-picture{
+      width:10% !important;
+    }
+
+    th{
+      text-align:center !important;
+    }
+
+    td{
+      text-align:center !important;
+    }
+
+    td input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    table td input {
+      width: 100%;
+      z-index:1;   
+     }
+
+    
+
+    img.object-cover{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    button.new-dream-button{
+      float:right;
+    }
+    .cursorpointer {
+      cursor: pointer;
+    }
